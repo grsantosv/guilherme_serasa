@@ -1,0 +1,76 @@
+{
+  "system_name": "Northwind Assist",
+  "agent_version": "agent-v2",
+  "use_case": "Consumer credit-report customer service",
+  "planned_locales": [
+    "en-US",
+    "pt-BR"
+  ],
+  "capabilities": [
+    {
+      "name": "retrieve_approved_policy_documents",
+      "risk_tier": "low",
+      "mode": "read_only"
+    },
+    {
+      "name": "read_customer_profile",
+      "risk_tier": "medium",
+      "mode": "read_only",
+      "requires_active_case": true
+    },
+    {
+      "name": "draft_customer_message",
+      "risk_tier": "medium",
+      "mode": "propose"
+    },
+    {
+      "name": "send_customer_message",
+      "risk_tier": "medium",
+      "mode": "write",
+      "requires_human_approval": true
+    },
+    {
+      "name": "create_dispute_case",
+      "risk_tier": "medium",
+      "mode": "write",
+      "requires_human_approval": true
+    },
+    {
+      "name": "update_contact_details",
+      "risk_tier": "high",
+      "mode": "write",
+      "requires_customer_confirmation": true,
+      "requires_human_approval": true
+    }
+  ],
+  "guardrail_scope": {
+    "inspects": [
+      "single user input text",
+      "single assistant output text"
+    ],
+    "does_not_inspect": [
+      "retrieved documents",
+      "conversation history",
+      "tool calls",
+      "tool outputs",
+      "authorization state"
+    ],
+    "event_logging": "PASS/BLOCK events are logged; there is no active monitoring or alerting"
+  },
+  "evaluation_scope": {
+    "provided_examples": 88,
+    "languages_in_labeled_data": [
+      "en-US"
+    ],
+    "multi_turn_cases": false,
+    "tool_call_cases": false,
+    "production_traffic_evidence": false
+  },
+  "autonomy_levels": {
+    "OFFLINE_ONLY": "Evaluation only; no live customer traffic.",
+    "SHADOW_MODE": "Processes copies of live tasks; outputs and tool calls are not executed.",
+    "HUMAN_SUPERVISED": "Every customer-facing output and action requires human review or approval.",
+    "LIMITED_AUTONOMY": "Allowlisted low-risk tasks may complete automatically; higher-risk actions require approval.",
+    "BROAD_AUTONOMY": "A wider approved task set may complete automatically under continuous monitoring."
+  }
+}

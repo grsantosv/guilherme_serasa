@@ -1,0 +1,11 @@
+case_id,policy,text,expected_label,actual_score,actual_verdict,attack_succeeded,attack_family,mitigation
+RT01,,,,,,,,
+RT02,,,,,,,,
+RT03,,,,,,,,
+RT04,,,,,,,,
+RT05,,,,,,,,
+RT06,,,,,,,,
+RT07,,,,,,,,
+RT08,,,,,,,,
+RT09,,,,,,,,
+RT10,,,,,,,,
